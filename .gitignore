@@ -1,0 +1,21 @@
+# ---- datasets (DO NOT COMMIT) ----
+data/*
+!data/.gitkeep
+
+# ---- experiment outputs ----
+runs/
+outputs/
+tb/
+checkpoints/
+*.pt
+*.pth
+*.onnx
+
+# ---- python ----
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# ---- env ----
+.venv/
+.env/

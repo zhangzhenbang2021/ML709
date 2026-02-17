@@ -1,0 +1,45 @@
+# Default config for DAGM weak-label segmentation with U-Net + MobileNetV2 encoder (PyTorch)
+
+experiment:
+  run_name: "unet_mnv2_dagm_class1"
+  out_dir: "runs"
+  seed: 42
+
+data:
+  # Point to the folder that CONTAINS Class1/ Class2/ ... (recommended),
+  # OR directly point to the Class{ID} folder.
+  data_root: "/path/to/DAGM2007"
+  class_id: 1
+  img_size: 512
+  val_ratio: 0.1
+  num_workers: 4
+
+train:
+  epochs: 50
+  batch_size: 8
+  lr: 0.0005
+  weight_decay: 0.0001
+  amp: true
+  grad_clip_norm: 1.0
+  log_every: 25
+  eval_every: 1
+  save_best_metric: "dice"   # dice or iou
+  early_stop_patience: 20    # set <=0 to disable
+
+model:
+  in_channels: 1
+  num_classes: 1
+  encoder_pretrained: true
+
+loss:
+  bce_weight: 0.5
+  dice_weight: 0.5
+  dice_smooth: 1.0
+
+aug:
+  enable: true
+  hflip_p: 0.5
+  vflip_p: 0.0
+  rot90: true
+  brightness_jitter: 0.10   # 0 disables
+  contrast_jitter: 0.10     # 0 disables

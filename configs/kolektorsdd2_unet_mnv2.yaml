@@ -1,0 +1,44 @@
+# KolektorSDD2 segmentation baseline: U-Net + MobileNetV2 encoder (PyTorch)
+
+experiment:
+  run_name: "unet_mnv2_kolektorsdd2"
+  out_dir: "runs"
+  seed: 42
+
+data:
+  data_root: "data/KolektorSDD2"
+  val_ratio: 0.1
+  num_workers: 4
+  in_channels: 3
+  sampler_max_weight: 10.0
+
+train:
+  epochs: 100
+  batch_size: 16
+  lr: 0.0002
+  weight_decay: 0.0001
+  amp: false
+  grad_clip_norm: 1.0
+  log_every: 25
+  eval_every: 1
+  save_best_metric: "dice_defect_only"   
+  early_stop_patience: -1    # set <=0 to disable
+
+model:
+  num_classes: 1
+  encoder_pretrained: false  # encoder is self-contained; pretrained weights not provided in this baseline
+
+loss:
+  bce_weight: 0.1
+  dice_weight: 0.9
+  dice_smooth: 1.0
+  cls_loss_weight: 0.00
+  seg_pos_weight_max: 300.0
+
+aug:
+  enable: false
+  hflip_p: 0.5
+  vflip_p: 0.0
+  rot90: true
+  brightness_jitter: 0.10
+  contrast_jitter: 0.10
