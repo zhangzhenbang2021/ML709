@@ -1,7 +1,8 @@
-# KolektorSDD2 Defect Segmentation (PyTorch)
+# KolektorSDD2 Defect Segmentation 
 Baseline **U-Net + MobileNetV2 encoder** for defect segmentation / localization.
 
-## Dataset layout (exactly as you described)
+https://www.vicos.si/resources/kolektorsdd2/
+## Dataset layout 
 Put the dataset here:
 
 ```
@@ -25,7 +26,7 @@ The code matches pairs by filename:
 pip install -r requirements.txt
 ```
 
-## 1) Inspect dataset (recommended)
+## 1) Inspect dataset 
 This checks how many pairs were found and optionally saves some overlay previews.
 
 ```bash
